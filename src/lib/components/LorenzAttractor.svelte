@@ -4,10 +4,15 @@
 	let canvas: HTMLCanvasElement;
 	let width: number;
 	let height: number;
+	let containerElement: HTMLDivElement;
 
 	onMount(() => {
 		const ctx = canvas.getContext('2d');
 		if (!ctx) return;
+
+		// Detect mobile for performance optimization
+		const isMobile = window.innerWidth < 768;
+		const iterationsPerFrame = isMobile ? 2 : 5;
 
 		// Lorenz System Parameters
 		const sigma = 10;
@@ -26,7 +31,15 @@
 		const points: { x: number; y: number; z: number; color: string }[] = [];
 		let hue = 180; // Start at teal
 
+		let isVisible = true;
+		let animationId: number;
+
 		const loop = () => {
+			if (!isVisible) {
+				animationId = requestAnimationFrame(loop);
+				return;
+			}
+
 			width = canvas.parentElement?.clientWidth || 300;
 			height = canvas.parentElement?.clientHeight || 300;
 
@@ -38,8 +51,8 @@
 				ctx.fillRect(0, 0, width, height);
 			}
 
-			// Calculate next point (run multiple iterations per frame for speed)
-			for (let i = 0; i < 5; i++) {
+			// Calculate next point (run fewer iterations on mobile)
+			for (let i = 0; i < iterationsPerFrame; i++) {
 				const dx = sigma * (y - x) * dt;
 				const dy = (x * (rho - z) - y) * dt;
 				const dz = (x * y - beta * z) * dt;
@@ -86,12 +99,28 @@
 			requestAnimationFrame(loop);
 		};
 
-		const animation = requestAnimationFrame(loop);
-		return () => cancelAnimationFrame(animation);
+		// Pause animation when not visible (performance optimization)
+		const observer = new IntersectionObserver(
+			(entries) => {
+				isVisible = entries[0].isIntersecting;
+			},
+			{ threshold: 0.1 }
+		);
+
+		if (containerElement) {
+			observer.observe(containerElement);
+		}
+
+		animationId = requestAnimationFrame(loop);
+		return () => {
+			cancelAnimationFrame(animationId);
+			observer.disconnect();
+		};
 	});
 </script>
 
 <div
+	bind:this={containerElement}
 	class="relative flex h-[400px] w-full items-center justify-center overflow-hidden rounded-2xl border border-white/5 bg-math-dark"
 >
 	<canvas bind:this={canvas} class="absolute inset-0 z-10"></canvas>

@@ -49,11 +49,28 @@
 }
 
 @utility animate-grid-flow {
-  animation: gridFlow 4s linear infinite;
+  animation: gridFlow 8s linear infinite;
 }
 
 @utility animate-grid-flow-reverse {
-  animation: gridFlowReverse 5s linear infinite;
+  animation: gridFlowReverse 10s linear infinite;
+}
+
+/* Respect user preferences and optimize for mobile */
+@media (prefers-reduced-motion: reduce) {
+  .animate-grid-flow,
+  .animate-grid-flow-reverse {
+    animation: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .animate-grid-flow {
+    animation: gridFlow 12s linear infinite;
+  }
+  .animate-grid-flow-reverse {
+    animation: gridFlowReverse 15s linear infinite;
+  }
 }
 
 @layer base {
