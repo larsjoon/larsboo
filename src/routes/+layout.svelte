@@ -9,11 +9,58 @@
 
 <svelte:head>
 	<link rel="icon" href={favicon} />
-	<title>Lars Vlasveld | Applied Math & Data Science</title>
+	<link rel="canonical" href="https://lars.boo" />
+
+	<!-- Primary Meta Tags -->
+	<title>Lars Vlasveld | AI, Crypto & Web Development</title>
+	<meta name="title" content="Lars Vlasveld | AI, Crypto & Web Development" />
 	<meta
 		name="description"
-		content="Portfolio of Lars Vlasveld, an Applied Mathematics and Data Science student based in The Netherlands. Exploring the intersection of logic, code, and design."
+		content="Portfolio of Lars Vlasveld, a 22-year-old student exploring AI, crypto, and web development. Building fast, accessible web experiences with a focus on design and performance."
 	/>
+	<meta name="author" content="Lars Vlasveld" />
+	<meta name="theme-color" content="#0a0f1c" />
+	<meta name="robots" content="index, follow" />
+
+	<!-- Open Graph / Facebook -->
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="https://lars.boo/" />
+	<meta property="og:title" content="Lars Vlasveld | AI, Crypto & Web Development" />
+	<meta
+		property="og:description"
+		content="Portfolio of Lars Vlasveld, a 22-year-old student exploring AI, crypto, and web development. Building fast, accessible web experiences with a focus on design and performance."
+	/>
+	<meta property="og:site_name" content="Lars Vlasveld" />
+	<meta property="og:locale" content="en_US" />
+
+	<!-- Twitter -->
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:url" content="https://lars.boo/" />
+	<meta name="twitter:title" content="Lars Vlasveld | AI, Crypto & Web Development" />
+	<meta
+		name="twitter:description"
+		content="Portfolio of Lars Vlasveld, a 22-year-old student exploring AI, crypto, and web development. Building fast, accessible web experiences with a focus on design and performance."
+	/>
+	<meta name="twitter:creator" content="@larsjoon" />
+
+	<!-- JSON-LD Structured Data -->
+	{@html `<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "Person",
+		"name": "Lars Vlasveld",
+		"url": "https://lars.boo",
+		"sameAs": [
+			"https://x.com/larsjoon",
+			"https://instagram.com/larsjoon",
+			"https://github.com/larsjoon",
+			"https://www.linkedin.com/in/larsvlasveld"
+		],
+		"jobTitle": "Student",
+		"knowsAbout": ["AI", "Crypto", "Web Development", "Python", "Svelte", "Java"],
+		"email": "hi@lars.boo"
+	}
+	</script>`}
 </svelte:head>
 
 <div
