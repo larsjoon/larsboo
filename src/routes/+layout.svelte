@@ -42,7 +42,7 @@
 				href="/"
 				class="font-mono text-2xl font-bold tracking-tighter transition-colors hover:text-neon-teal"
 			>
-				Lars<span class="text-neon-teal">.</span>poo
+				Lars<span class="text-neon-teal">.</span>boo
 			</a>
 
 			<div class="hidden items-center gap-8 font-mono text-sm md:flex">
